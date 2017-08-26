@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="ConsoleGame.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Player.cs">
+    <Files>
+      <File FileName="Program.cs" Line="43" Column="3" />
+      <File FileName="Vector2.cs" Line="8" Column="18" />
+      <File FileName="Player.cs" Line="11" Column="2" />
+      <File FileName="BaseCharacter.cs" Line="11" Column="44" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
