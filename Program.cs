@@ -4,41 +4,21 @@ namespace ConsoleGame
 {
 	class MainClass
 	{
+		//	 This is the main entry point for the application
 		public static void Main (string[] args)
 		{
-			Player MyPlayer = new Player();
+			//	Create our main game loop object
+			MainLoop GameLoop = new MainLoop();
 
-			Console.CursorVisible = false;
-
-			while(true)
+			//	Constantly update this object to keep the application moving
+			while(GameLoop.Update() == true)
 			{
-				if(Console.KeyAvailable)
-				{
-					ConsoleKey KeyPressed = Console.ReadKey().Key;
-					if(KeyPressed == ConsoleKey.UpArrow)
-					{
-						MyPlayer.Move(0, -1);
-					}
-					if(KeyPressed == ConsoleKey.DownArrow)
-					{
-						MyPlayer.Move(0, 1);
-					}
-					if(KeyPressed == ConsoleKey.LeftArrow)
-					{
-						MyPlayer.Move(-1, 0);
-					}
-					if(KeyPressed == ConsoleKey.RightArrow)
-					{
-						MyPlayer.Move(1, 0);
-					}
-					if(KeyPressed == ConsoleKey.Escape)
-					{
-						break;
-					}
-				}
-
-				MyPlayer.Draw();
+				//	Draw to the screen
+				GameLoop.RenderScene();
 			}
+
+			//	Cleanup and shutdown
+			GameLoop.Shutdown();
 		}
 	}
 }
