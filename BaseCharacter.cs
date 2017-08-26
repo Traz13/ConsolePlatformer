@@ -8,6 +8,8 @@ namespace ConsoleGame
 		private Vector2 Position;
 		private char Avatar;
 
+		//	Base character constructor Char will default to x when no parameter is sent
+		//	new BaseCharacter() or newBaseCharacter('y')
 		public BaseCharacter(char AvatarChar = 'x')
 		{
 			//	 Set the default position
