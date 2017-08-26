@@ -4,8 +4,10 @@ namespace ConsoleGame
 {
 	public class MainLoop
 	{
-		Player MyPlayer;
+		//	Function
+		private Player MyPlayer;
 
+		//	Constructor
 		public MainLoop ()
 		{
 			Console.CursorVisible = false;
@@ -13,6 +15,7 @@ namespace ConsoleGame
 			MyPlayer = new Player();
 		}
 
+		//	Function
 		//	Return false on exit command
 		public bool Update()
 		{
@@ -57,18 +60,21 @@ namespace ConsoleGame
 			return true;
 		}
 
+		//	Function
 		public void RenderScene()
 		{
 			//	Draw our player object
 			MyPlayer.Draw();
 		}
 
+		//	Function
 		private void SpawnEnemy()
 		{
 			//	Randomize a position within bounds of the screen
 			Vector2 RandomPosition = new Vector2(new Random().Next(Console.WindowWidth), new Random().Next(Console.WindowHeight));
 		}
 
+		//	Function
 		public void Shutdown()
 		{
 			Console.Clear();

@@ -5,9 +5,11 @@ namespace ConsoleGame
 	// Base character class information
 	public class BaseCharacter
 	{
+		//	Local variables
 		private Vector2 Position;
 		private char Avatar;
 
+		//	Constructor
 		//	Base character constructor Char will default to x when no parameter is sent
 		//	new BaseCharacter() or newBaseCharacter('y')
 		public BaseCharacter(char AvatarChar = 'x')
@@ -19,6 +21,7 @@ namespace ConsoleGame
 			Avatar = AvatarChar;
 		}
 
+		//	Function
 		//	Move by vector
 		public void Move(Vector2 Direction)
 		{
@@ -50,6 +53,7 @@ namespace ConsoleGame
 			}
 		}
 
+		//	Function
 		//	Move by two floats
 		public void Move(float X, float Y)
 		{
@@ -61,6 +65,7 @@ namespace ConsoleGame
 			Move(MoveVector);
 		}
 
+		//	Function
 		public void Draw()
 		{
 			//	Move to our current position and draw our avatar
@@ -68,6 +73,7 @@ namespace ConsoleGame
 			Console.Write(Avatar);
 		}
 
+		//	Function
 		private void SetCursorPosition()
 		{
 			//	Move the console cursor to our position

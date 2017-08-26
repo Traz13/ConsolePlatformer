@@ -4,6 +4,7 @@ namespace ConsoleGame
 {
 	class MainClass
 	{
+		//	Static Function
 		//	 This is the main entry point for the application
 		public static void Main (string[] args)
 		{
