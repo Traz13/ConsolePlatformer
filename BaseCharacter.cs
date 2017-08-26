@@ -10,16 +10,24 @@ namespace ConsoleGame
 
 		public BaseCharacter(char AvatarChar = 'x')
 		{
+			//	 Set the default position
 			Position = Vector2.Zero;
+
+			//	Store our CHAR to use as our ascii avatar
 			Avatar = AvatarChar;
 		}
 
+		//	Move by vector
 		public void Move(Vector2 Direction)
 		{
+			//	Move to and clear our currentl locaton
 			SetCursorPosition();
 			Console.Write(" ");
+
+			//	Move by the ammount passed in as direction
 			Position += Direction;
 
+			//	Limit x within the screen width
 			if(Position.X < 0.0f)
 			{
 				Position.X = 0.0f;
@@ -29,6 +37,7 @@ namespace ConsoleGame
 				Position.X = Console.WindowWidth - 1;
 			}
 
+			//	Limit y within the screen height
 			if(Position.Y < 0.0f)
 			{
 				Position.Y = 0.0f;
@@ -39,19 +48,27 @@ namespace ConsoleGame
 			}
 		}
 
+		//	Move by two floats
 		public void Move(float X, float Y)
 		{
-			Move(new Vector2(X, Y));
+			//	Instead of rewriting the whole function above,
+			//		create on execution path for moving in the previous function
+			//		by calling into it from this function
+
+			Vector2 MoveVector = new Vector2(X, Y);
+			Move(MoveVector);
 		}
 
 		public void Draw()
 		{
+			//	Move to our current position and draw our avatar
 			SetCursorPosition();
 			Console.Write(Avatar);
 		}
 
 		private void SetCursorPosition()
 		{
+			//	Move the console cursor to our position
 			Console.SetCursorPosition((int)Position.X, (int)Position.Y);
 		}
 	}
