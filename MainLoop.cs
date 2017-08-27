@@ -1,18 +1,33 @@
 ﻿using System;
 
+//	This is where list comes from
+using System.Collections.Generic;
+
 namespace ConsoleGame
 {
 	public class MainLoop
 	{
 		//	Function
 		private Player MyPlayer;
+		private List<BaseCharacter> Enemies;
+		//private System.Collections.Generic.List<BaseCharacter> Enemies;
 
 		//	Constructor
 		public MainLoop ()
 		{
 			Console.CursorVisible = false;
 
+			Enemies = new List<BaseCharacter>();
+
 			MyPlayer = new Player();
+
+			for(int EnemiesSpawned = 0; EnemiesSpawned < 5; EnemiesSpawned++)
+			{
+				SpawnEnemy();
+
+				// Wait a frame between spawns to make random a little more random
+				System.Threading.Thread.Sleep(1);
+			}
 		}
 
 		//	Function
@@ -22,8 +37,10 @@ namespace ConsoleGame
 			//	Dont try to read the key unless there is a key available
 			if(Console.KeyAvailable)
 			{
+				bool bInterceptKey = true;
+
 				//	Store the current key pressed
-				ConsoleKey KeyPressed = Console.ReadKey().Key;
+				ConsoleKey KeyPressed = Console.ReadKey(bInterceptKey).Key;
 
 				//	Escape Command
 				if(KeyPressed == ConsoleKey.Escape)
@@ -48,12 +65,6 @@ namespace ConsoleGame
 				{
 					MyPlayer.Move(1, 0);
 				}
-
-				//	Spawn an enemny
-				if(KeyPressed == ConsoleKey.S)
-				{
-					SpawnEnemy();
-				}
 			}
 
 			//	return false to exit;
@@ -65,6 +76,11 @@ namespace ConsoleGame
 		{
 			//	Draw our player object
 			MyPlayer.Draw();
+
+			foreach(BaseCharacter Enemy in Enemies)
+			{
+				Enemy.Draw();
+			}
 		}
 
 		//	Function
@@ -72,11 +88,19 @@ namespace ConsoleGame
 		{
 			//	Randomize a position within bounds of the screen
 			Vector2 RandomPosition = new Vector2(new Random().Next(Console.WindowWidth), new Random().Next(Console.WindowHeight));
+
+			BaseCharacter Enemy = new BaseCharacter();
+			Enemy.Move(RandomPosition);
+
+			Enemies.Add(Enemy);
 		}
 
 		//	Function
 		public void Shutdown()
 		{
+			Enemies.Clear();
+			MyPlayer = null;
+
 			Console.Clear();
 			Console.WriteLine("GameOver");
 		}
