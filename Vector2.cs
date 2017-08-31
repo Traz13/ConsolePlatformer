@@ -51,6 +51,16 @@ namespace ConsoleGame
 			return new Vector2(v1.X / m, v1.Y / m);
 		}
 
+		public static bool operator ==(Vector2 v1, Vector2 v2)
+		{
+			return v1.X == v2.X && v1.Y == v2.Y;
+		}
+
+		public static bool operator !=(Vector2 v1, Vector2 v2)
+		{
+			return v1.X != v2.X || v1.Y != v2.Y;
+		}
+
 		//	Static Function
 		public static float Distance(Vector2 v1, Vector2 v2)
 		{

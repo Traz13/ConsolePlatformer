@@ -79,6 +79,11 @@ namespace ConsoleGame
 			//	Move the console cursor to our position
 			Console.SetCursorPosition((int)Position.X, (int)Position.Y);
 		}
+
+		public Vector2 GetPosition()
+		{
+			return Position;
+		}
 	}
 }
 

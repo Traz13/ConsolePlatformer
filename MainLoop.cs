@@ -7,21 +7,27 @@ namespace ConsoleGame
 {
 	public class MainLoop
 	{
-		//	Function
+		//	Private variables
 		private Player MyPlayer;
 		private List<BaseCharacter> Enemies;
+
+		private int NumEnemies;
 		//private System.Collections.Generic.List<BaseCharacter> Enemies;
 
 		//	Constructor
 		public MainLoop ()
 		{
+			NumEnemies = 10;
+
 			Console.CursorVisible = false;
 
 			Enemies = new List<BaseCharacter>();
 
 			MyPlayer = new Player();
 
-			for(int EnemiesSpawned = 0; EnemiesSpawned < 5; EnemiesSpawned++)
+			MyPlayer.Move(Console.WindowWidth / 2, Console.WindowHeight / 2);
+
+			for(int EnemiesSpawned = 0; EnemiesSpawned < NumEnemies; EnemiesSpawned++)
 			{
 				SpawnEnemy();
 
@@ -67,6 +73,15 @@ namespace ConsoleGame
 				}
 			}
 
+			foreach(Enemy enemy in Enemies)
+			{
+				if(enemy.GetPosition() == MyPlayer.GetPosition())
+				{
+					return false;
+				}
+				enemy.Update();
+			}
+
 			//	return false to exit;
 			return true;
 		}
@@ -77,9 +92,9 @@ namespace ConsoleGame
 			//	Draw our player object
 			MyPlayer.Draw();
 
-			foreach(BaseCharacter Enemy in Enemies)
+			foreach(Enemy enemy in Enemies)
 			{
-				Enemy.Draw();
+				enemy.Draw();
 			}
 		}
 
@@ -89,10 +104,10 @@ namespace ConsoleGame
 			//	Randomize a position within bounds of the screen
 			Vector2 RandomPosition = new Vector2(new Random().Next(Console.WindowWidth), new Random().Next(Console.WindowHeight));
 
-			BaseCharacter Enemy = new BaseCharacter();
-			Enemy.Move(RandomPosition);
+			Enemy enemy = new Enemy();
+			enemy.Move(RandomPosition);
 
-			Enemies.Add(Enemy);
+			Enemies.Add(enemy);
 		}
 
 		//	Function
